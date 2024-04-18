@@ -9,7 +9,15 @@ dotenv.config({
 path: "./env"
 })
 
-connectDB();
+connectDB()
+.then(() =>{
+    app.listen(process.env.PORT || 8000, () =>{
+      console.log(`port is running on port ${process.env.PORT}`)
+    });
+})
+.catch((error) =>{
+  console.log("connection failed",error)
+})
 
 
 //first approach 1: connecting database in the main file of index js
